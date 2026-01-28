@@ -17,3 +17,8 @@ output "subnet_priv_1b" {
   value       = module.eks_network.subnet_priv_1b
   description = "Private subnet for EKS node group - az2"
 }
+
+output "cluster_name" {
+  value       = module.eks_cluster.cluster_name
+  description = "Name of the EKS cluster to be used in kubeconfig"
+}
