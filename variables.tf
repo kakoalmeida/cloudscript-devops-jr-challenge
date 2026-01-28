@@ -1,5 +1,6 @@
 variable "aws_region" {
-  type = string
+  type        = string
+  description = "AWS Region for resources deployment"
 }
 
 variable "project_name" {
@@ -10,6 +11,7 @@ variable "project_name" {
 variable "cidr_block" {
   type        = string
   description = "IPv4 CIDR block for VPC"
+  default     = "10.0.0.0/16"
 }
 
 variable "tags" {
@@ -20,4 +22,5 @@ variable "tags" {
 variable "ec2_type" {
   type        = string
   description = "EC2 instance for managed node groups"
+  default     = "t3.small"
 }
