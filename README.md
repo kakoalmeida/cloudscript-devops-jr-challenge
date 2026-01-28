@@ -10,7 +10,7 @@ Este projeto provisiona na AWS um ambiente de cluster EKS + VPC + Node group fun
 
 ####  VPC
 
-Foi utilizando a faixa de endereços 10.0.0.0/16 que permite uma disponibilidade maior de endereços IPs e subnets. Foram criadas subnets em duas AZs (obrigatorio para EKS) que permite tolerância a indisponibilidades de AZs. Subnets privadas para os Nós do EKS evitando exposicão a ataques e subnets publicas para serem acessadas diretamente pela internet (ex, LoadBalancers). Junto as subnets publicas foi associado um Internet Gateway (igw) para comunicação entre VPC e a internet e as subnets privadas foi associado um Nat Gateway para permitir a saida de recursos das subnets privadas
+Foi utilizada a faixa de endereços 10.0.0.0/16 que permite uma disponibilidade maior de endereços IPs e subnets. Foram criadas subnets em duas AZs (obrigatorio para EKS) que permite tolerância a indisponibilidades de AZs. Subnets privadas para os Nós do EKS evitando exposicão a ataques e subnets publicas para serem acessadas diretamente pela internet (ex, LoadBalancers). Junto as subnets publicas foi associado um Internet Gateway (igw) para comunicação entre VPC e a internet e as subnets privadas foi associado um Nat Gateway para permitir a saida de recursos das subnets privadas
  
 ### EKS
 
@@ -18,7 +18,7 @@ Optei por não utilizar o módulo oficial da AWS, pois acredito que para este ce
 
 ### Managed Node Group
 
-Seguindo a mesma lógica do módulo EKS, escolhe provisionar os nodes através de um módulo local.
+Seguindo a mesma lógica do módulo EKS, escolhi provisionar os nodes através de um módulo local.
 
 ### Recursos
 
@@ -28,6 +28,19 @@ Para melhor gerenciamento dos recursos foram utilizadas tags q permitem a identi
 ## Execução
 
 Antes de qualquer comando, configure um backend, no caso deste projeto foi utilizado um bucket s3 para armazenamento remoto do estado. Se preferir pode utilizar outros backend. Se quiser continuar com s3 é necessario informar um bucket existente, se precisar crie um.
+
+Certifique-se também que o provider esta instalado
+
+```bash
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~>6.0"
+    }
+  }
+}
+```
 
 Exemplo de backend remoto com s3:
 ```bash
