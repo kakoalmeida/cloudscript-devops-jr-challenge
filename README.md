@@ -1,159 +1,42 @@
-# CloudScript Technology DevOps Challenge
+<!-- BEGIN_TF_DOCS -->
+## Requirements
 
-## 👋 Introdução
+| Name | Version |
+|------|---------|
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~>6.0 |
 
-Obrigado pelo interesse em participar do processo seletivo da **CloudScript Technology**!
+## Providers
 
-A **CloudScript Technology** é uma empresa especializada em **Platform Engineering**, com foco em **arquitetura de aplicações Cloud-Native em nível empresarial**. Atuamos ajudando organizações a **desenhar, operar e escalar plataformas modernas em nuvem**, priorizando **segurança, eficiência e automação**.
+No providers.
 
-Este desafio foi elaborado para avaliar, de forma **prática e acessível**, os conceitos fundamentais de **DevOps**, **Infraestrutura como Código (IaC)** e **AWS**, considerando um perfil **DevOps Júnior**.
+## Modules
 
-> ⚠️ **Importante:** não se preocupe caso não consiga resolver todos os pontos do desafio. Nosso objetivo é entender **seu raciocínio**, **organização do código** e **clareza na documentação das decisões**.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_eks_cluster"></a> [eks\_cluster](#module\_eks\_cluster) | ./modules/cluster-eks | n/a |
+| <a name="module_eks_network"></a> [eks\_network](#module\_eks\_network) | ./modules/network | n/a |
+| <a name="module_managed_node_group"></a> [managed\_node\_group](#module\_managed\_node\_group) | ./modules/managed-node-group | n/a |
 
-No mais, divirta-se e boa sorte no desafio! 🚀
+## Resources
 
+No resources.
 
+## Inputs
 
-## 🎯 Objetivo do Desafio
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS Region for resources deployment | `string` | n/a | yes |
+| <a name="input_cidr_block"></a> [cidr\_block](#input\_cidr\_block) | IPv4 CIDR block for VPC | `string` | `"10.0.0.0/16"` | no |
+| <a name="input_ec2_type"></a> [ec2\_type](#input\_ec2\_type) | EC2 instance for managed node groups | `string` | `"t3.small"` | no |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name to identify VPC | `string` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources. | `map(any)` | n/a | yes |
 
-Criar uma infraestrutura básica na AWS, utilizando **Terraform ou Terragrunt**, capaz de provisionar:
+## Outputs
 
-- Uma **VPC customizada**
-- Um **cluster Amazon EKS funcional**
-
-O foco do desafio **não é complexidade extrema**, mas sim:
-- Boas práticas
-- Organização
-- Clareza na implementação e documentação
-
-
-## 🧪 O que deve ser feito
-
-1. Faça um **fork** deste repositório  
-2. Implemente a infraestrutura solicitada via IaC
-3. Envie uma **Pull Request (PR)** contendo:
-
-   - Código Terraform funcional
-   - Um `README.md` explicando:
-     - Suas decisões técnicas
-     - Como o projeto foi estruturado
-     - Quais dificuldades encontrou
-   - Um **desenho/diagrama da arquitetura** (imagem ou link) explicando os serviços utilizados
-
-4. Faça **commits ao longo do processo** (evite apenas um commit final)
-
-> Queremos entender seu **raciocínio**, não apenas o resultado final 🙂
-
-## ⏱️ Tempo estimado
-
-Tempo estimado para execução: **3 a 5 horas**.
-
-## 🛠️ Requisitos Técnicos
-
-- AWS Provider
-- Uso de **modules** é bem-vindo (inclusive módulos públicos)
-- Código organizado, legível e reutilizável
-- Uso de **tags** nos recursos AWS
-
-## 🗄️ Estado do Terraform
-
-Não é obrigatório configurar backend remoto para o Terraform.  
-Caso não utilize, descreva no README como essa configuração seria feita em um ambiente real.
-
-## 🏗️ Infraestrutura mínima esperada
-
-### VPC
-- CIDR customizado
-- Subnets públicas e/ou privadas
-
-### Cluster EKS
-- Node Group (managed ou auto-managed)
-- Configuração básica para funcionamento do cluster
-
-## 📖 Documentação (README do candidato)
-
-No `README.md` do seu fork, inclua:
-
-- Visão geral da solução
-- Explicação da arquitetura
-- Como executar o Terraform (`init`, `plan`, `apply`)
-- Decisões técnicas tomadas
-- Pontos de melhoria identificados
-
----
-
-## 🧠 Para a entrevista
-
-Prepare anotações pessoais contendo:
-
-- Melhorias que você faria na infraestrutura
-- O que adicionaria em um cenário real de produção
-- Pontos relacionados a:
-  - Segurança
-  - Observabilidade
-  - Escalabilidade
-
-> ⚠️ **Não inclua essas anotações na Pull Request.**  
-> Elas serão discutidas durante a entrevista.
-
----
-
-## 📤 Entrega
-- Certifique-se de que a **Pull Request esteja aberta**
-
----
-
-## 💰 Custos de AWS
-
-Para a realização deste desafio, **não é necessário manter os recursos provisionados ativos**. A criação da infraestrutura pode ser realizada exclusivamente para fins de validação técnica, devendo os recursos ser removidos após a conclusão do teste.
-
-A **CloudScript Technology** não se responsabiliza, nem realiza reembolso, por quaisquer custos, tarifas ou encargos eventualmente gerados na conta AWS de titularidade do candidato durante a execução do desafio. Ao participar do processo seletivo, o candidato declara estar ciente e de acordo com estas condições.
-
-Recomenda-se que o candidato:
-- Utilize uma conta AWS pessoal ou destinada a testes
-- Execute `terraform destroy` ao finalizar a validação
-- Monitore o faturamento da AWS durante a execução
-
-
-## 📊 Critérios de Avaliação
-
-O desafio será avaliado com base em:
-
-- Organização e estrutura do código
-- Clareza e qualidade da documentação
-- Uso de boas práticas de IaC
-- Entendimento básico de AWS e EKS
-- Capacidade de justificar decisões técnicas
-
-## 🚫 Fora do escopo
-
-Os itens abaixo **não são obrigatórios** para este desafio:
-
-- Deploy de aplicações no EKS
-- Configuração de CI/CD
-- Observabilidade avançada
-- Hardening completo de segurança
-- Ambientes múltiplos (staging/produção)
-
-
-## 🔗 Referências
-
-Os links abaixo podem ser utilizados como apoio durante o desenvolvimento do desafio:
-
-https://conventionalcommits.org
-
-https://github.com/terraform-docs/terraform-docs
-
-https://developer.hashicorp.com/terraform/cli/commands/validate
-
-https://github.com/terraform-linters/tflint
-
-https://github.com/aquasecurity/tfsec
-
-https://terragrunt.gruntwork.io
-
-## 💬 Considerações finais
-
-Este desafio não é sobre acertar tudo, mas sobre mostrar seu processo de aprendizado, organização e comunicação técnica.
-
-Boa sorte e esperamos conversar com você em breve! 🚀
+| Name | Description |
+|------|-------------|
+| <a name="output_subnet_priv_1a"></a> [subnet\_priv\_1a](#output\_subnet\_priv\_1a) | Private subnet for EKS node group - az1 |
+| <a name="output_subnet_priv_1b"></a> [subnet\_priv\_1b](#output\_subnet\_priv\_1b) | Private subnet for EKS node group - az2 |
+| <a name="output_subnet_public_1a"></a> [subnet\_public\_1a](#output\_subnet\_public\_1a) | Public subnet for cluster EKS - az1 |
+| <a name="output_subnet_public_1b"></a> [subnet\_public\_1b](#output\_subnet\_public\_1b) | Public subnet for cluster EKS - az2 |
+<!-- END_TF_DOCS -->
