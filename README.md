@@ -49,7 +49,7 @@ O projeto foi organizado seguindo o princípio de Modularização, visando a reu
 ```
 ## Execução
 
-Antes de qualquer comando, configure um backend, no caso deste projeto foi utilizado um bucket s3 para armazenamento remoto do estado. Se preferir pode utilizar outros backend. Se quiser continuar com s3 é necessario informar um bucket existente, se precisar crie um.
+Antes de qualquer comando, configure um backend, no caso deste projeto foi utilizado um bucket s3 para armazenamento remoto do estado. Se preferir pode utilizar outros backend. Se quiser continuar com s3 é necessario informar um bucket existente, se precisar crie um. No contexto atual do projeto, a configuração de backend se encontra no arquivo provider.tf
 
 Certifique-se também que o provider esta instalado
 
