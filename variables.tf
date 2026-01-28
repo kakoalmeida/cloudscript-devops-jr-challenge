@@ -16,3 +16,8 @@ variable "tags" {
   type        = map(any)
   description = "A map of tags to add to all resources."
 }
+
+variable "ec2_type" {
+  type        = string
+  description = "EC2 instance for managed node groups"
+}
