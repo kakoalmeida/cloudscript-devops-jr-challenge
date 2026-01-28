@@ -1,11 +1,13 @@
 variable "aws_region" {
   type        = string
   description = "AWS Region for resources deployment"
+  default     = "us-east-1"
 }
 
 variable "project_name" {
   type        = string
   description = "Project name to identify VPC"
+  default     = "devops-challenge"
 }
 
 variable "cidr_block" {
@@ -17,6 +19,10 @@ variable "cidr_block" {
 variable "tags" {
   type        = map(any)
   description = "A map of tags to add to all resources."
+  default = {
+    team    = "devops"
+    project = "devops-challenge"
+  }
 }
 
 variable "ec2_type" {
