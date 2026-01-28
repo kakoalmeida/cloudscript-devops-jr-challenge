@@ -1,6 +1,6 @@
 # CloudScript Technology DevOps Challenge
 
-Este projeto provisiona na AWS um ambiente de cluster EKS + VPC + Node group funcionais. O projeto é modularizado, facilitando a reutilização dos recursos provisionados. São criados os seguintes recursos:
+Este projeto provisiona na AWS um ambiente EKS + VPC + Node group funcionais. O projeto é modularizado, facilitando a reutilização dos recursos provisionados. São criados os seguintes recursos:
 
 - VPC com subnets publicas e privadas em duas AZs, internet gateway e nat gateway para as subnets.
 - EKS Cluster provisionado a partir de módulo local.
@@ -24,7 +24,29 @@ Seguindo a mesma lógica do módulo EKS, escolhi provisionar os nodes através d
 
 Para melhor gerenciamento dos recursos foram utilizadas tags q permitem a identificação do projeto, time, ambiente e resource principal associado. 
 
+## Arquitetura Planejada
 
+![Arquitetura AWS](assets/diagram.png)
+
+## Estrutura do Projeto
+
+O projeto foi organizado seguindo o princípio de Modularização, visando a reutilização de código e a separação de responsabilidades, que permite maior clareza sobre os recursos definidos no código
+
+```text
+.
+├── modules/
+│   ├── cluster-eks/          # Definição do Control Plane do Kubernetes e Roles de IAM
+│   ├── managed-node-group/   # Configuração dos Worker Nodes
+│   └── network/              # Camada de rede: VPC, Subnets, Gateways
+├── modules.tf                # Arquivo principal que orquestra e chama os módulos locais
+├── provider.tf               # Configuração dos provedores (AWS) e versões requeridas
+├── variables.tf              # Declaração das variáveis de entrada do projeto
+├── terraform.tfvars          # Definição dos valores para as variáveis
+├── outputs.tf                # Exposição de dados relevantes 
+├── README.md                 # Documentação do projeto e instruções de uso
+├── LICENSE                   # Termos de licença do software
+└── .gitignore                # Arquivos e diretórios ignorados pelo controle de versão
+```
 ## Execução
 
 Antes de qualquer comando, configure um backend, no caso deste projeto foi utilizado um bucket s3 para armazenamento remoto do estado. Se preferir pode utilizar outros backend. Se quiser continuar com s3 é necessario informar um bucket existente, se precisar crie um.
@@ -70,11 +92,12 @@ Aplicar a criação dos recursos em nuvem
 terraform apply
 ```
 
-Após a criação dos recursos, copie o nome do cluster criado e configure kubectl para interagir com o cluster
+Após a criação dos recursos, copie o nome do cluster criado e configure kubectl para interagir com o cluster. É fundamental que aws-cli esteja instalado em sua máquina para execução deste comando.
 
 ```bash
 aws eks update-kubeconfig --region us-east-1 --name CLUSTER_NAME
 ```
+
 
 ## Melhorias
 
