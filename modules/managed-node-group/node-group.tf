@@ -8,6 +8,7 @@ resource "aws_eks_node_group" "eks_managed_node_group" {
   ]
 
   instance_types = [var.ec2_type]
+  capacity_type  = "SPOT"
 
   launch_template {
     name    = aws_launch_template.eks_node_launch_template.name
